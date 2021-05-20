@@ -7,6 +7,7 @@ on:
 
   pull_request:
     branches: [ main ]
+    types: [opened,synchronize,closed]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,3 +23,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: hmarr/debug-action@v2
+      - name: See merge commit sha and if merged
+        run: |
+          echo ${{ github.event.pull_request.merge_commit_sha }}
+          echo ${{ github.event.pull_request.merged }}
+      
+    
